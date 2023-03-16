@@ -1,0 +1,18 @@
+Sistema Operacional: Ubuntu 
+
+OBS: antes de tudo é interessante executar os seguintes comandos no terminal:
+
+(a) sudo apt update  -> baixa possíveis novos pacotes de todos os repositórios configurados
+(b) sudo apt upgrade -> instala os pacotes baixados, inclusive suas dependências, caso sejam exigidas
+
+1-) COMO INSTALAR O VS CODE: através da Snap Store
+
+2-) COMO INSTALAR O COMPILADOR (gcc): 
+
+(a) sudo apt install build-essential
+(b) gcc --version (testa se o compilador foi instalado corretamente)
+
+3-) COMO INSTALAR O MAKE:
+
+(a) sudo apt install make
+(b) make -version (testa se o make foi instalado corretamente)
