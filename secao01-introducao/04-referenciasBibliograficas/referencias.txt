@@ -1,0 +1,8 @@
+Referências bibliográficas do curso:
+
+The C Programming Language, 2nd Edition, de Brian Kernighan e Dennis Ritchie (criadores da linguagem C).  O capítulo 5 será o mais focado, tendo em vista que é a seção onde os autores tratam dos ponteiros.
+
+https://www.cs.yale.edu/homes/aspnes/pinewiki/C(2f)Pointers.html
+
+http://www.cs.ecu.edu/karl/3300/spr16/Notes/C/Memory/index.html
+
