@@ -1,4 +1,4 @@
-SOURCE_FILE = main.c
+SOURCE_FILE = exemplo02.c
 EXECUTABLE_NAME = main.out
 
 CC = gcc
