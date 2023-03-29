@@ -20,4 +20,4 @@ int mf_soma(matrizFloat *, matrizFloat *, matrizFloat *);
 int mf_subtrair(matrizFloat *, matrizFloat *, matrizFloat *);
 
 int mf_multiplicarPorEscalar(float, matrizFloat *, matrizFloat *);
-void mf_multiplicar(matrizFloat *, matrizFloat *, matrizFloat *);
+int mf_multiplicar(matrizFloat *, matrizFloat *, matrizFloat *);

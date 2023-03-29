@@ -162,6 +162,28 @@ int mf_multiplicarPorEscalar(float n, matrizFloat *m, matrizFloat *mr)
     return 1;
 }
 
-void mf_multiplicar(matrizFloat *, matrizFloat *, matrizFloat *)
+int mf_multiplicar(matrizFloat *m1, matrizFloat *m2, matrizFloat *mr)
 {
+    int i, j, aux;
+    float r;
+
+    if (m1->colunas != m2->linhas)
+        return 0;
+
+    mf_criar(mr, m1->linhas, m2->colunas);
+
+    for (i = 0; i < mr->linhas; i++)
+    {
+        for (j = 0; j < mr->colunas; j++)
+        {
+            r = 0.0f;
+
+            for (aux = 0; aux < m1->linhas; aux++)
+                r += mf_retornarValor(i, aux, *m1) * mf_retornarValor(aux, j, *m2); 
+            
+            mf_alterarValor(i, j, r, mr);
+        }
+    }
+
+    return 1;
 }
