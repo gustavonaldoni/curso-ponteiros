@@ -39,7 +39,7 @@ int main()
     printf("======== Alterando m2 ========\n\n");
     mf_mostrar(m2);
 
-    rSoma = mf_soma(&m1, &m2, &mSoma);
+    rSoma = mf_somar(&m1, &m2, &mSoma);
 
     printf("======== mSoma = m1 + m2 ========\n\n");
 
@@ -65,7 +65,7 @@ int main()
         mf_mostrar(mMult);
     else
         printf("Multiplicação entre m1 e m2 inválida ...\n\n");
-    
+
     mf_destruir(&m1);
     mf_mostrar(m1);
 

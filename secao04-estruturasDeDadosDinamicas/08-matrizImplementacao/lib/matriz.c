@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include "matriz.h"
 
-void mf_criar(matrizFloat *m, int linhas, int colunas)
+int mf_criar(matrizFloat *m, int linhas, int colunas)
 {
     int i;
 
     if (linhas <= 0 || colunas <= 0)
-        return;
+        return 0;
 
     float *conteudo = (float *)malloc((linhas * colunas) * sizeof(float));
 
@@ -20,15 +20,19 @@ void mf_criar(matrizFloat *m, int linhas, int colunas)
 
     for (i = 0; i < (linhas * colunas); i++)
         m->conteudo[i] = 0.0f;
+
+    return 1;
 }
 
-void mf_destruir(matrizFloat *m)
+int mf_destruir(matrizFloat *m)
 {
     if (m->conteudo == NULL)
-        return;
+        return 0;
 
     free(m->conteudo);
     m->conteudo = NULL;
+
+    return 1;
 }
 
 void mf_mostrar(matrizFloat m)
@@ -44,7 +48,7 @@ void mf_mostrar(matrizFloat m)
     for (i = 0; i < m.linhas; i++)
     {
         for (j = 0; j < m.colunas; j++)
-            printf("%.2f ", m.conteudo[m.linhas * i + j]);
+            printf("%.2f ", m.conteudo[m.colunas * i + j]);
 
         printf("\n");
     }
@@ -71,7 +75,7 @@ void mf_alterarValor(int numLinha, int numColuna, float novoValor, matrizFloat *
     if (mf_validarNumeroLinhaNumeroColuna(numLinha, numColuna, *m) == 0)
         return;
 
-    m->conteudo[m->linhas * numLinha + numColuna] = novoValor;
+    m->conteudo[m->colunas * numLinha + numColuna] = novoValor;
 }
 
 float mf_retornarValor(int numLinha, int numColuna, matrizFloat m)
@@ -82,7 +86,7 @@ float mf_retornarValor(int numLinha, int numColuna, matrizFloat m)
     if (mf_validarNumeroLinhaNumeroColuna(numLinha, numColuna, m) == 0)
         return -1.0f;
 
-    return m.conteudo[m.linhas * numLinha + numColuna];
+    return m.conteudo[m.colunas * numLinha + numColuna];
 }
 
 void mf_criarIdentidade(int ordem, matrizFloat *m)
@@ -104,7 +108,7 @@ void mf_criarIdentidade(int ordem, matrizFloat *m)
     }
 }
 
-int mf_soma(matrizFloat *m1, matrizFloat *m2, matrizFloat *mr)
+int mf_somar(matrizFloat *m1, matrizFloat *m2, matrizFloat *mr)
 {
     int i, j;
 
@@ -112,16 +116,16 @@ int mf_soma(matrizFloat *m1, matrizFloat *m2, matrizFloat *mr)
         mf_estaVazia(*m2))
         return 0;
 
-    if (m1->linhas != m2->linhas || 
+    if (m1->linhas != m2->linhas ||
         m1->colunas != m2->colunas)
         return 0;
-        
+
     mf_criar(mr, m1->linhas, m1->colunas);
 
     for (i = 0; i < mr->linhas; i++)
         for (j = 0; j < mr->colunas; j++)
             mf_alterarValor(i, j, mf_retornarValor(i, j, *m1) + mf_retornarValor(i, j, *m2), mr);
-    
+
     return 1;
 }
 
@@ -133,7 +137,7 @@ int mf_subtrair(matrizFloat *m1, matrizFloat *m2, matrizFloat *mr)
         mf_estaVazia(*m2))
         return 0;
 
-    if (m1->linhas != m2->linhas || 
+    if (m1->linhas != m2->linhas ||
         m1->colunas != m2->colunas)
         return 0;
 
@@ -142,7 +146,7 @@ int mf_subtrair(matrizFloat *m1, matrizFloat *m2, matrizFloat *mr)
     for (i = 0; i < mr->linhas; i++)
         for (j = 0; j < mr->colunas; j++)
             mf_alterarValor(i, j, mf_retornarValor(i, j, *m1) - mf_retornarValor(i, j, *m2), mr);
-    
+
     return 1;
 }
 
@@ -179,8 +183,8 @@ int mf_multiplicar(matrizFloat *m1, matrizFloat *m2, matrizFloat *mr)
             r = 0.0f;
 
             for (aux = 0; aux < m1->linhas; aux++)
-                r += mf_retornarValor(i, aux, *m1) * mf_retornarValor(aux, j, *m2); 
-            
+                r += mf_retornarValor(i, aux, *m1) * mf_retornarValor(aux, j, *m2);
+
             mf_alterarValor(i, j, r, mr);
         }
     }
