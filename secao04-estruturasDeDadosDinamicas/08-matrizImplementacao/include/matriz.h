@@ -21,3 +21,6 @@ int mf_subtrair(matrizFloat *, matrizFloat *, matrizFloat *);
 
 int mf_multiplicarPorEscalar(float, matrizFloat *, matrizFloat *);
 int mf_multiplicar(matrizFloat *, matrizFloat *, matrizFloat *);
+
+int mf_inserirLinha(matrizFloat *);
+int mf_inserirColuna(matrizFloat *);

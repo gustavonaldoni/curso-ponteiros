@@ -191,3 +191,64 @@ int mf_multiplicar(matrizFloat *m1, matrizFloat *m2, matrizFloat *mr)
 
     return 1;
 }
+
+int mf_inserirLinha(matrizFloat *m)
+{
+    int i;
+
+    float *aux = NULL, *copia = NULL;
+    size_t tamanho = (size_t)0;
+
+    if (mf_estaVazia(*m))
+        return 0;
+
+    copia = m->conteudo;
+
+    tamanho = (size_t)((m->linhas + 1) * (m->colunas));
+    aux = (float *)malloc(tamanho * sizeof(float));
+
+    for (i = 0; i < m->linhas * m->colunas; i++)
+        aux[i] = copia[i];
+
+    for (i = m->linhas * m->colunas; i < tamanho; i++)
+        aux[i] = 0.0f;
+
+    m->linhas += 1;
+    m->conteudo = aux;
+    free(copia);
+
+    return 1;
+}
+
+int mf_inserirColuna(matrizFloat *m)
+{
+    int i, j;
+
+    float *aux = NULL, *copia = NULL;
+    size_t tamanho = (size_t)0;
+
+    if (mf_estaVazia(*m))
+        return 0;
+
+    copia = m->conteudo;
+
+    tamanho = (size_t)((m->linhas) * (m->colunas + 1));
+    aux = (float *)malloc(tamanho * sizeof(float));
+
+    for (i = 0; i < m->linhas; i++)
+    {
+        for (j = 0; j < m->colunas + 1; j++)
+        {
+            if (j == m->colunas)
+                aux[(m->colunas + 1) * i + j] = 0.0f;
+            else
+                aux[(m->colunas + 1) * i + j] = copia[m->colunas * i + j];
+        }
+    }
+
+    m->colunas += 1;
+    m->conteudo = aux;
+    free(copia);
+
+    return 1;
+}

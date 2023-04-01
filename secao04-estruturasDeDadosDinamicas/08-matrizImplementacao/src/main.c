@@ -9,6 +9,12 @@ int main()
     int rMultEscalar;
     int rMult;
 
+    int rInserirLinhaM1;
+    int rInserirLinhaM2;
+
+    int rInserirColunaM1;
+    int rInserirColunaM2;
+
     matrizFloat m1;
     matrizFloat m2;
 
@@ -19,10 +25,10 @@ int main()
     mf_criar(&m1, 10, 10);
     mf_criar(&m2, 10, 1);
 
-    printf("======== Criando m1 (10x10) ========\n\n");
+    printf("======== Criando m1 (%dx%d) ========\n\n", m1.linhas, m1.colunas);
     mf_mostrar(m1);
 
-    printf("======== Criando m2 (10x1) ========\n\n");
+    printf("======== Criando m2 (%dx%d) ========\n\n", m2.linhas, m2.colunas);
     mf_mostrar(m2);
 
     for (i = 0; i < 10; i++)
@@ -65,6 +71,42 @@ int main()
         mf_mostrar(mMult);
     else
         printf("Multiplicação entre m1 e m2 inválida ...\n\n");
+
+    rInserirLinhaM1 = mf_inserirLinha(&m1);
+    
+    printf("======== Inserindo linha em m1 (%dx%d) ========\n\n", m1.linhas, m1.colunas);
+
+    if(rInserirLinhaM1)
+        mf_mostrar(m1);
+    else
+        printf("Inserção de linha inválida ...\n\n");
+
+    rInserirColunaM1 = mf_inserirColuna(&m1);
+    
+    printf("======== Inserindo coluna em m1 (%dx%d) ========\n\n", m1.linhas, m1.colunas);
+
+    if(rInserirColunaM1)
+        mf_mostrar(m1);
+    else
+        printf("Inserção de coluna inválida ...\n\n");
+
+    rInserirLinhaM2 = mf_inserirLinha(&m2);
+
+    printf("======== Inserindo linha em m2 (%dx%d) ========\n\n", m2.linhas, m2.colunas);
+    
+    if(rInserirLinhaM2)
+        mf_mostrar(m2);
+    else
+        printf("Inserção de linha inválida ...\n\n");
+    
+    rInserirColunaM2 = mf_inserirColuna(&m2);
+    
+    printf("======== Inserindo coluna em m2 (%dx%d) ========\n\n", m2.linhas, m2.colunas);
+
+    if(rInserirColunaM2)
+        mf_mostrar(m2);
+    else
+        printf("Inserção de coluna inválida ...\n\n");
 
     mf_destruir(&m1);
     mf_mostrar(m1);
