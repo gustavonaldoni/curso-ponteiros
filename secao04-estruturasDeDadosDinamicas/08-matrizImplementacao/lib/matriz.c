@@ -252,3 +252,39 @@ int mf_inserirColuna(matrizFloat *m)
 
     return 1;
 }
+
+int mf_removerLinha(matrizFloat *m, int numLinha)
+{
+    int i, j;
+
+    float *aux = NULL, *copia = NULL;
+    size_t tamanho = (size_t)0;
+
+    if (numLinha < 0 ||
+        numLinha >= m->linhas)
+        return 0;
+
+    if (mf_estaVazia(*m))
+        return 0;
+
+    copia = m->conteudo;
+
+    tamanho = (size_t)((m->linhas - 1) * (m->colunas));
+    aux = (float *)malloc(tamanho * sizeof(float));
+
+    for (i = 0; i < m->linhas; i++)
+        for (j = 0; j < m->colunas; j++)
+            if (i != numLinha)
+            {
+                if (i < numLinha)
+                    aux[m->colunas * i + j] = copia[m->colunas * i + j];
+                else if (i > numLinha)
+                    aux[m->colunas * (i - 1) + j] = copia[m->colunas * i + j];
+            }
+
+    m->linhas -= 1;
+    m->conteudo = aux;
+    free(copia);
+
+    return 1;
+}

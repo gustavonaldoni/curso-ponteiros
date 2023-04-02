@@ -12,6 +12,9 @@ int main()
     int rInserirLinhaM1;
     int rInserirLinhaM2;
 
+    int rRemoverLinhaM1;
+    int rRemoverLinhaM2;
+
     int rInserirColunaM1;
     int rInserirColunaM2;
 
@@ -90,6 +93,15 @@ int main()
     else
         printf("Inserção de coluna inválida ...\n\n");
 
+    rRemoverLinhaM1 = mf_removerLinha(&m1, 5);
+    
+    printf("======== Removendo linha 5 de m1 (%dx%d) ========\n\n", m1.linhas, m1.colunas);
+
+    if(rRemoverLinhaM1)
+        mf_mostrar(m1);
+    else
+        printf("Remoção de linha inválida ...\n\n");
+
     rInserirLinhaM2 = mf_inserirLinha(&m2);
 
     printf("======== Inserindo linha em m2 (%dx%d) ========\n\n", m2.linhas, m2.colunas);
@@ -107,6 +119,15 @@ int main()
         mf_mostrar(m2);
     else
         printf("Inserção de coluna inválida ...\n\n");
+    
+    rRemoverLinhaM2 = mf_removerLinha(&m2, 3);
+    
+    printf("======== Removendo linha 3 de m2 (%dx%d) ========\n\n", m2.linhas, m2.colunas);
+
+    if(rRemoverLinhaM2)
+        mf_mostrar(m2);
+    else
+        printf("Remoção de linha inválida ...\n\n");
 
     mf_destruir(&m1);
     mf_mostrar(m1);

@@ -24,3 +24,5 @@ int mf_multiplicar(matrizFloat *, matrizFloat *, matrizFloat *);
 
 int mf_inserirLinha(matrizFloat *);
 int mf_inserirColuna(matrizFloat *);
+
+int mf_removerLinha(matrizFloat *, int);
