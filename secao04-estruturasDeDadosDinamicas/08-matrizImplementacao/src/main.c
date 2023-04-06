@@ -18,6 +18,8 @@ int main()
     int rInserirColunaM1;
     int rInserirColunaM2;
 
+    int rRemoverColunaM1;
+
     matrizFloat m1;
     matrizFloat m2;
 
@@ -102,6 +104,15 @@ int main()
     else
         printf("Remoção de linha inválida ...\n\n");
 
+    rRemoverColunaM1 = mf_removerColuna(&m1, 3);
+
+    printf("======== Removendo coluna 3 de m1 (%dx%d) ========\n\n", m1.linhas, m1.colunas);
+
+    if(rRemoverColunaM1)
+        mf_mostrar(m1);
+    else
+        printf("Remoção de coluna inválida ...\n\n");
+    
     rInserirLinhaM2 = mf_inserirLinha(&m2);
 
     printf("======== Inserindo linha em m2 (%dx%d) ========\n\n", m2.linhas, m2.colunas);

@@ -26,3 +26,4 @@ int mf_inserirLinha(matrizFloat *);
 int mf_inserirColuna(matrizFloat *);
 
 int mf_removerLinha(matrizFloat *, int);
+int mf_removerColuna(matrizFloat *, int);

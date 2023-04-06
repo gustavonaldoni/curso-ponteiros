@@ -267,6 +267,13 @@ int mf_removerLinha(matrizFloat *m, int numLinha)
     if (mf_estaVazia(*m))
         return 0;
 
+    if (m->linhas == 1)
+    {
+        free(m->conteudo);
+        m->conteudo = NULL;
+        return 1;
+    }
+
     copia = m->conteudo;
 
     tamanho = (size_t)((m->linhas - 1) * (m->colunas));
@@ -283,6 +290,49 @@ int mf_removerLinha(matrizFloat *m, int numLinha)
             }
 
     m->linhas -= 1;
+    m->conteudo = aux;
+    free(copia);
+
+    return 1;
+}
+
+
+int mf_removerColuna(matrizFloat *m, int numColuna)
+{
+    int i, j, k;
+
+    float *aux = NULL, *copia = NULL;
+    size_t tamanho = (size_t)0;
+
+    if (numColuna < 0 ||
+        numColuna >= m->colunas)
+        return 0;
+
+    if (mf_estaVazia(*m))
+        return 0;
+
+    if (m->colunas == 1)
+    {
+        free(m->conteudo);
+        m->conteudo = NULL;
+        return 1;
+    }
+
+    copia = m->conteudo;
+
+    tamanho = (size_t)((m->linhas) * (m->colunas - 1));
+    aux = (float *)malloc(tamanho * sizeof(float));
+
+    k = 0;
+    for (i = 0; i < m->linhas; i++)
+        for (j = 0; j < m->colunas; j++)
+            if (j != numColuna)
+            {
+                aux[k] = copia[m->colunas * i + j];  
+                k++;
+            }
+                
+    m->colunas -= 1;
     m->conteudo = aux;
     free(copia);
 
