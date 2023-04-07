@@ -11,10 +11,10 @@ void mf_mostrar(matrizFloat);
 int mf_estaVazia(matrizFloat);
 int mf_validarNumeroLinhaNumeroColuna(int, int, matrizFloat);
 
-void mf_alterarValor(int, int, float, matrizFloat *);
+int mf_alterarValor(int, int, float, matrizFloat *);
 float mf_retornarValor(int, int, matrizFloat);
 
-void mf_criarIdentidade(int, matrizFloat*);
+int mf_criarIdentidade(int, matrizFloat*);
 
 int mf_somar(matrizFloat *, matrizFloat *, matrizFloat *);
 int mf_subtrair(matrizFloat *, matrizFloat *, matrizFloat *);

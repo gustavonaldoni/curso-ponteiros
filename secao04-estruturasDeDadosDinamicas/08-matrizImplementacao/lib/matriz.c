@@ -12,7 +12,7 @@ int mf_criar(matrizFloat *m, int linhas, int colunas)
     float *conteudo = (float *)malloc((linhas * colunas) * sizeof(float));
 
     if (conteudo == NULL)
-        exit(EXIT_FAILURE);
+        return 0;
 
     m->linhas = linhas;
     m->colunas = colunas;
@@ -67,15 +67,16 @@ int mf_validarNumeroLinhaNumeroColuna(int numLinha, int numColuna, matrizFloat m
            (numColuna >= 0 && numLinha <= m.colunas - 1);
 }
 
-void mf_alterarValor(int numLinha, int numColuna, float novoValor, matrizFloat *m)
+int mf_alterarValor(int numLinha, int numColuna, float novoValor, matrizFloat *m)
 {
     if (mf_estaVazia(*m))
-        return;
+        return 0;
 
     if (mf_validarNumeroLinhaNumeroColuna(numLinha, numColuna, *m) == 0)
-        return;
+        return 0;
 
     m->conteudo[m->colunas * numLinha + numColuna] = novoValor;
+    return 1;
 }
 
 float mf_retornarValor(int numLinha, int numColuna, matrizFloat m)
@@ -89,12 +90,12 @@ float mf_retornarValor(int numLinha, int numColuna, matrizFloat m)
     return m.conteudo[m.colunas * numLinha + numColuna];
 }
 
-void mf_criarIdentidade(int ordem, matrizFloat *m)
+int mf_criarIdentidade(int ordem, matrizFloat *m)
 {
     int i, j;
 
     if (ordem <= 0)
-        return;
+        return 0;
 
     mf_criar(m, ordem, ordem);
 
@@ -106,6 +107,8 @@ void mf_criarIdentidade(int ordem, matrizFloat *m)
                 mf_alterarValor(i, j, 1.0f, m);
         }
     }
+
+    return 1;
 }
 
 int mf_somar(matrizFloat *m1, matrizFloat *m2, matrizFloat *mr)
@@ -295,7 +298,6 @@ int mf_removerLinha(matrizFloat *m, int numLinha)
 
     return 1;
 }
-
 
 int mf_removerColuna(matrizFloat *m, int numColuna)
 {
