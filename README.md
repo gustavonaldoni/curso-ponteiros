@@ -1,5 +1,6 @@
 # Curso - Aprenda Ponteiros e Alocação Dinâmica de Memória em C
-Repositório oficial contendo todos os códigos-fonte apresentados no curso "Aprenda Ponteiros e Alocação Dinâmica de Memória em C"
+Repositório oficial contendo todos os materiais (códigos-fonte, slides, etc) apresentados no curso "Aprenda Ponteiros e Alocação Dinâmica de Memória em C", disponível na plataforma Udemy.
+
 ## Descrição
 O curso definitivo, a nível <b>universitário</b>, sobre ponteiros e alocação dinâmica em linguagem C.
 
